@@ -1,0 +1,28 @@
+{
+  "name": "js-constr",
+  "version": "1.0.0",
+  "description": "javascript pure apllication",
+  "main": "app.js",
+  "scripts": {
+    "serve": "parcel ./src/index.html -p 4200 --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlenaKravchenko2022/js-constr.git"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "'OlenaKravchenko\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlenaKravchenko2022/js-constr/issues"
+  },
+  "homepage": "https://github.com/OlenaKravchenko2022/js-constr#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "@parcel/service-worker": "^2.8.3"
+  }
+}
