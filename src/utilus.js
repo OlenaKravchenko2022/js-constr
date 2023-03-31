@@ -1,0 +1,7 @@
+//ф-я роу буде приймати якийсь контент і повертати наступне
+export function row(content, styles = "") {
+  return `<div class="row" style="${styles}">${content}</div>`;
+}
+export function col(content) {
+  return `<div class="col-sm">${content}</div>`;
+}

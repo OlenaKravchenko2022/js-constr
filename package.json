@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "javascript pure apllication",
   "main": "app.js",
+  "targets": {
+    "main": false
+  },
   "scripts": {
     "serve": "parcel ./src/index.html -p 4200 --open"
   },

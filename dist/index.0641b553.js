@@ -559,25 +559,40 @@ function hmrAccept(bundle, id) {
 },{}],"bNKaB":[function(require,module,exports) {
 var _modelJs = require("./model.js");
 var _templatesJs = require("./templates.js");
+var _appCss = require("./styles/app.css");
 const site = document.querySelector("#site");
+//змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
+// console.log(templates["title"]);
 (0, _modelJs.model).forEach((block)=>{
     // создаём html пустой блок, куда будем всё вкладывать
-    let html = "";
-    if (block.type === "title") html = (0, _templatesJs.title)(block);
-    else if (block.type === "text") html = (0, _templatesJs.text)(block);
-    else if (block.type === "columns") html = (0, _templatesJs.columns)(block);
-    else if (block.type === "image") html = (0, _templatesJs.image)(block);
-    site.insertAdjacentHTML("beforeend", html);
+    // let html = "";
+    //   if (block.type === "title") {
+    //     html = title(block);
+    //   } else if (block.type === "text") {
+    //     html = text(block);
+    //   } else if (block.type === "columns") {
+    //     html = columns(block);
+    //   } else if (block.type === "image") {
+    //     html = image(block);
+    //   }
+    const toHTML = (0, _templatesJs.templates)[block.type];
+    if (toHTML) site.insertAdjacentHTML("beforeend", toHTML(block));
 });
 
-},{"./model.js":"dEDha","./templates.js":"gOO7a"}],"dEDha":[function(require,module,exports) {
+},{"./model.js":"dEDha","./templates.js":"gOO7a","./styles/app.css":"gvqqn"}],"dEDha":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "model", ()=>model);
+var _blueJpg = require("./images/blue.jpg");
+var _blueJpgDefault = parcelHelpers.interopDefault(_blueJpg);
 const model = [
     {
         type: "title",
-        value: "HEllo world from JS"
+        value: "My personal site for my need",
+        options: {
+            tag: "h2",
+            styles: `background:linear- gradient(to right, #ff0099,#493240); color: #fff`
+        }
     },
     {
         type: "text",
@@ -595,11 +610,48 @@ const model = [
     },
     {
         type: "image",
-        value: "./images/blue.jpg"
+        value: (0, _blueJpgDefault.default)
     }
 ];
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"./images/blue.jpg":"kZngU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kZngU":[function(require,module,exports) {
+module.exports = require("baef3ef2260ad953").getBundleURL("lPpKD") + "blue.39bb43ef.jpg" + "?" + Date.now();
+
+},{"baef3ef2260ad953":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -631,10 +683,37 @@ exports.export = function(dest, destName, get) {
 
 },{}],"gOO7a":[function(require,module,exports) {
 // делаем функции для того чтобы код был читабельней и понятнее
+//функції маєть схожу конструкцію, тому ми можемо створити однакову для всіх утіліту utilus.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "title", ()=>title);
-parcelHelpers.export(exports, "text", ()=>text);
+parcelHelpers.export(exports, "templates", ()=>templates);
+var _utilus = require("./utilus");
+function title(block) {
+    //функція яка генерує це приймає цілий блок
+    const tag = block.options.tag ?? "h1";
+    //передаємо обєкт styles
+    const styles = block.options.styles;
+    //спрощуємо дану функцію і замінюємо на меншу
+    // return `
+    //       <div class="row">
+    //         <div class="col-sm">
+    //           <h1>${block.value}</h1>
+    //         </div>
+    //       </div>
+    //       `;
+    //инлайн стилі застосовуємо до самої строчки row
+    return (0, _utilus.row)((0, _utilus.col)(`<${tag}>${block.value}</${tag}>`));
+}
+function text(block) {
+    // return `<div class="row">
+    //         <div class="col-sm">
+    //           <p>
+    //             ${block.value}
+    //           </p>
+    //         </div>
+    //       </div>`;
+    return (0, _utilus.row)((0, _utilus.col)(`<p>${block.value}</p>`));
+}
 // для того, чтобсгенерировать необходимое колличество колонок нам надо сделать цикл по массиву. в самой функции columns будем генерировать контент
 // function columns(block) {
 //   let html = "";
@@ -653,40 +732,42 @@ parcelHelpers.export(exports, "text", ()=>text);
 // }
 // можем использовать метод map, который помогает сразу трансформировать метод во что то
 // метод map возвращает нам массив, поэтому , чтобы убрать запятые мы должны соединить столбцы с помощью метода join
-parcelHelpers.export(exports, "columns", ()=>columns);
-parcelHelpers.export(exports, "image", ()=>image);
-function title(block) {
-    return `
-        <div class="row">
-          <div class="col-sm">
-            <h1>${block.value}</h1>
-          </div>
-        </div>
-        `;
-}
-function text(block) {
-    return `<div class="row">
-          <div class="col-sm">
-            <p>
-              ${block.value}
-            </p>
-          </div>
-        </div>`;
-}
 function columns(block) {
-    const html = block.value.map((item)=>`<div class="col-sm">
-                          ${item}
-                     </div>`);
-    return `<div class="row">
-                    ${html.join("")}
-    </div>
-      `;
+    //скоротимо ще цю функцію
+    // const html = block.value.map(
+    //   (item) => col(item)
+    const html = block.value.map((0, _utilus.col));
+    // return `<div class="row">
+    //                   ${html.join("")}
+    //   </div>
+    //     `;
+    return (0, _utilus.row)(html.join(""));
 }
 function image(block) {
-    return `
-    <div class="row"><img src="${block.value}"/></div>`;
+    // return `
+    //   <div class="row"><img src="${block.value}"/></div>`;
+    return (0, _utilus.row)(`<img src="${block.value}"/>`);
+}
+const templates = {
+    title,
+    text,
+    columns,
+    image
+};
+
+},{"./utilus":"5cIFG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5cIFG":[function(require,module,exports) {
+//ф-я роу буде приймати якийсь контент і повертати наступне
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "row", ()=>row);
+parcelHelpers.export(exports, "col", ()=>col);
+function row(content, styles = "") {
+    return `<div class="row" style="${styles}">${content}</div>`;
+}
+function col(content) {
+    return `<div class="col-sm">${content}</div>`;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gvqqn":[function() {},{}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
 
 //# sourceMappingURL=index.0641b553.js.map
