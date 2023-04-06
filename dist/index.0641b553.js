@@ -558,63 +558,87 @@ function hmrAccept(bundle, id) {
 
 },{}],"bNKaB":[function(require,module,exports) {
 var _modelJs = require("./model.js");
-var _templatesJs = require("./templates.js");
+// import { templates } from "./templates.js";
+var _site = require("./classes/site");
+var _sidebar = require("./classes/sidebar");
 var _appCss = require("./styles/app.css");
-const site = document.querySelector("#site");
-//змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
-// console.log(templates["title"]);
-(0, _modelJs.model).forEach((block)=>{
-    // создаём html пустой блок, куда будем всё вкладывать
-    // let html = "";
-    //   if (block.type === "title") {
-    //     html = title(block);
-    //   } else if (block.type === "text") {
-    //     html = text(block);
-    //   } else if (block.type === "columns") {
-    //     html = columns(block);
-    //   } else if (block.type === "image") {
-    //     html = image(block);
-    //   }
-    const toHTML = (0, _templatesJs.templates)[block.type];
-    if (toHTML) site.insertAdjacentHTML("beforeend", toHTML(block));
-});
+const site = new (0, _site.Site)("#site");
+site.render((0, _modelJs.model));
+const sidebar = new (0, _sidebar.Sidebar)("#panel");
+sidebar.render((0, _sidebar.Sidebar)); //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
+ // console.log(templates["title"]);
+ // model.forEach((block) => {
+ // создаём html пустой блок, куда будем всё вкладывать
+ // let html = "";
+ //   if (block.type === "title") {
+ //     html = title(block);
+ //   } else if (block.type === "text") {
+ //     html = text(block);
+ //   } else if (block.type === "columns") {
+ //     html = columns(block);
+ //   } else if (block.type === "image") {
+ //     html = image(block);
+ //   }
+ // const toHTML = templates[block.type];
+ // if (false) {
+ // site.insertAdjacentHTML("beforeend", block.toHTML());
+ // }
+ // });
 
-},{"./model.js":"dEDha","./templates.js":"gOO7a","./styles/app.css":"gvqqn"}],"dEDha":[function(require,module,exports) {
+},{"./model.js":"dEDha","./classes/site":"24VTm","./classes/sidebar":"5YCBk","./styles/app.css":"gvqqn"}],"dEDha":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "model", ()=>model);
 var _blueJpg = require("./images/blue.jpg");
 var _blueJpgDefault = parcelHelpers.interopDefault(_blueJpg);
+var _block = require("./classes/block");
 const model = [
-    {
-        type: "title",
-        value: "My personal site for my need",
-        options: {
-            tag: "h2",
-            styles: `background:linear- gradient(to right, #ff0099,#493240); color: #fff`
+    new (0, _block.TitleBlock)("My personal site for my need", {
+        tag: "h2",
+        styles: {
+            background: "linear-gradient(to right, #ff0099,#493240)",
+            color: "#fff",
+            "text-align": "center",
+            padding: "2rem"
         }
-    },
-    {
-        type: "text",
-        value: "I will wrtie somethhing here later"
-    },
-    {
-        type: "columns",
-        value: [
-            "111111111111111",
-            "2222222222222222",
-            "33333333333",
-            "444444444444",
-            "555555555"
-        ]
-    },
-    {
-        type: "image",
-        value: (0, _blueJpgDefault.default)
-    }
+    }),
+    new (0, _block.TextBlock)("I will wrtie somethhing here later", {
+        styles: {
+            background: "linear-gradient(to right, #ff0099,#493240)",
+            color: "#fff",
+            "text-align": "center",
+            padding: "2rem"
+        }
+    }),
+    new (0, _block.ColumnsBlock)([
+        "111111111111111",
+        "2222222222222222",
+        "33333333333",
+        "444444444444",
+        "555555555"
+    ], {
+        styles: {
+            background: "linear-gradient(to right, #ff0099,#493240)",
+            color: "#fff",
+            "text-align": "center",
+            padding: "2rem"
+        }
+    }),
+    new (0, _block.ImageBlock)((0, _blueJpgDefault.default), {
+        styles: {
+            display: "flex",
+            "justify-content": "center",
+            padding: "2rem"
+        },
+        imageStyle: {
+            width: "500px",
+            height: "auto"
+        },
+        alt: "it's a picture"
+    })
 ];
 
-},{"./images/blue.jpg":"kZngU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kZngU":[function(require,module,exports) {
+},{"./images/blue.jpg":"kZngU","./classes/block":"3AZe8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kZngU":[function(require,module,exports) {
 module.exports = require("baef3ef2260ad953").getBundleURL("lPpKD") + "blue.39bb43ef.jpg" + "?" + Date.now();
 
 },{"baef3ef2260ad953":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -651,7 +675,92 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"gkKU3":[function(require,module,exports) {
+},{}],"3AZe8":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TitleBlock", ()=>TitleBlock);
+parcelHelpers.export(exports, "TextBlock", ()=>TextBlock);
+parcelHelpers.export(exports, "ColumnsBlock", ()=>ColumnsBlock);
+parcelHelpers.export(exports, "ImageBlock", ()=>ImageBlock);
+var _utilus = require("../utilus");
+class Block {
+    constructor(type, value, options){
+        this.type = type;
+        this.value = value;
+        this.options = options;
+    }
+    toHTML() {
+        throw new Error("method toHTML has to be relized");
+    }
+}
+class TitleBlock extends Block {
+    constructor(value, options){
+        super("title", value, options);
+    }
+    toHTML() {
+        const { tag ="h1" , styles  } = this.options; //змінюємо Block на this
+        return (0, _utilus.row)((0, _utilus.col)(`<${tag}>${this.value}</${tag}>`), (0, _utilus.css)(styles));
+    }
+}
+class TextBlock extends Block {
+    constructor(value, options){
+        super("text", value, options);
+    }
+    toHTML() {
+        return (0, _utilus.row)((0, _utilus.col)(`<p>${this.value}</p>`), (0, _utilus.css)(this.options.styles));
+    }
+}
+class ColumnsBlock extends Block {
+    constructor(value, options){
+        super("columns", value, options);
+    }
+    toHTML() {
+        const html = this.value.map((0, _utilus.col)).join("");
+        return (0, _utilus.row)(html, (0, _utilus.css)(this.options.styles));
+    }
+}
+class ImageBlock extends Block {
+    constructor(value, options){
+        super("image", value, options);
+    }
+    toHTML() {
+        const { imageStyle , alt , styles  } = this.options;
+        return (0, _utilus.row)(`<img src="${this.value}" alt="${alt}" style="${(0, _utilus.css)(imageStyle)}"/>`, (0, _utilus.css)(styles));
+    }
+}
+
+},{"../utilus":"5cIFG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5cIFG":[function(require,module,exports) {
+//ф-я роу буде приймати якийсь контент і повертати наступне
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "row", ()=>row);
+parcelHelpers.export(exports, "col", ()=>col);
+//функція css,яка буде приймати обєкти стилів і по замовчуванню буде рівнятись пустому обєкту
+//один з методів це скористатися загальною функцвєю object в яку ми передаємо сам обєктб а на виході отримуємо масив keys
+parcelHelpers.export(exports, "css", ()=>css);
+function row(content, styles = ``) {
+    return `<div class="row" style="${styles}">${content}</div>`;
+}
+function col(content) {
+    return `<div class="col-sm">${content}</div>`;
+}
+function css(styles = {}) {
+    // const keys = Object.keys(styles);
+    // console.log(keys);
+    //пробіжемося по масиву за допомогою мепа, де на кожній літерації отримуємо певний key і необхідно повернути нову строчку із обєкта вже в стілі. Потім потрібно вказати значення, яке беремо з обєкту стайл за допомогою ключа key
+    //потім отримуємо array цих стилів і повертати будем array,які зєднаємо чере точку с комою
+    //  але даний нижче код можно зробити кращим
+    //   const array = keys.map((key) => {
+    //     return `${key}:${styles[key]}`;
+    //   });
+    //   return array.join(";");
+    // ми можемо зразу пробігтися по масиву через функцію меп, який буде преобразовувати всю цю структуру+зразу можемо застосувати метод джойн
+    //зробимо окрему функцію яка приводить в строку
+    const toString = (key)=>`${key}:${styles[key]}`;
+    return Object.keys(styles).map(toString).join(";");
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -681,91 +790,30 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"gOO7a":[function(require,module,exports) {
-// делаем функции для того чтобы код был читабельней и понятнее
-//функції маєть схожу конструкцію, тому ми можемо створити однакову для всіх утіліту utilus.js
+},{}],"24VTm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "templates", ()=>templates);
-var _utilus = require("./utilus");
-function title(block) {
-    //функція яка генерує це приймає цілий блок
-    const tag = block.options.tag ?? "h1";
-    //передаємо обєкт styles
-    const styles = block.options.styles;
-    //спрощуємо дану функцію і замінюємо на меншу
-    // return `
-    //       <div class="row">
-    //         <div class="col-sm">
-    //           <h1>${block.value}</h1>
-    //         </div>
-    //       </div>
-    //       `;
-    //инлайн стилі застосовуємо до самої строчки row
-    return (0, _utilus.row)((0, _utilus.col)(`<${tag}>${block.value}</${tag}>`));
+parcelHelpers.export(exports, "Site", ()=>Site);
+class Site {
+    constructor(selector){
+        this.el = document.querySelector(selector);
+    }
+    render(model) {
+        model.forEach((block)=>{
+            this.el.insertAdjacentHTML("beforeend", block.toHTML());
+        });
+    }
 }
-function text(block) {
-    // return `<div class="row">
-    //         <div class="col-sm">
-    //           <p>
-    //             ${block.value}
-    //           </p>
-    //         </div>
-    //       </div>`;
-    return (0, _utilus.row)((0, _utilus.col)(`<p>${block.value}</p>`));
-}
-// для того, чтобсгенерировать необходимое колличество колонок нам надо сделать цикл по массиву. в самой функции columns будем генерировать контент
-// function columns(block) {
-//   let html = "";
-// далее мы пробегаемся по массиву с помощью метода forEach, где item-это контент массива, затем к строке html добовляем шаблон
-//   block.value.forEach((item) => {
-//     html += `<div class="col-sm">
-//             <p>
-//                ${item}
-//             </p>
-//           </div>`;
-//   });
-//   return `<div class="row">
-//                     ${html}
-//     </div>
-//       `;
-// }
-// можем использовать метод map, который помогает сразу трансформировать метод во что то
-// метод map возвращает нам массив, поэтому , чтобы убрать запятые мы должны соединить столбцы с помощью метода join
-function columns(block) {
-    //скоротимо ще цю функцію
-    // const html = block.value.map(
-    //   (item) => col(item)
-    const html = block.value.map((0, _utilus.col));
-    // return `<div class="row">
-    //                   ${html.join("")}
-    //   </div>
-    //     `;
-    return (0, _utilus.row)(html.join(""));
-}
-function image(block) {
-    // return `
-    //   <div class="row"><img src="${block.value}"/></div>`;
-    return (0, _utilus.row)(`<img src="${block.value}"/>`);
-}
-const templates = {
-    title,
-    text,
-    columns,
-    image
-};
 
-},{"./utilus":"5cIFG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5cIFG":[function(require,module,exports) {
-//ф-я роу буде приймати якийсь контент і повертати наступне
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5YCBk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "row", ()=>row);
-parcelHelpers.export(exports, "col", ()=>col);
-function row(content, styles = "") {
-    return `<div class="row" style="${styles}">${content}</div>`;
-}
-function col(content) {
-    return `<div class="col-sm">${content}</div>`;
+parcelHelpers.export(exports, "Sidebar", ()=>Sidebar);
+class Sidebar {
+    constructor(selector){
+        this.el = document.querySelector(selector);
+        this.el.insertAdjacentHTML("afterbegin", "<h2>test</h2>");
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gvqqn":[function() {},{}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
