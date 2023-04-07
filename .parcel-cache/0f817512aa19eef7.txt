@@ -1,7 +1,7 @@
-4280
+4282
 58C:\Users\kravchenko\Desktop\js-constr\node_modules\timsort133245647150320403 1
 79C:\Users\kravchenko\Desktop\js-constr\node_modules\postcss-value-parser\LICENSE133245647141725678 0
-49C:\Users\kravchenko\Desktop\js-constr\src\classes133251747376130002 1
+49C:\Users\kravchenko\Desktop\js-constr\src\classes133253362504425924 1
 94C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\compressor-raw\lib\RawCompressor.js133245647170627922 0
 102C:\Users\kravchenko\Desktop\js-constr\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mdb_drop.c133245647166010755 0
 50C:\Users\kravchenko\Desktop\js-constr\package.json133246748744530329 0
@@ -17,7 +17,7 @@
 103C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\css-background-offsets.js133245647181796129 0
 58C:\Users\kravchenko\Desktop\js-constr\src\classes\block.js133251095538215699 0
 79C:\Users\kravchenko\Desktop\js-constr\node_modules\mdn-data\css\properties.json133245647159664656 0
-42C:\Users\kravchenko\Desktop\js-constr\dist133251976343090742 1
+42C:\Users\kravchenko\Desktop\js-constr\dist133253415749185339 1
 126C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts\index.linux-x64-gnu.node133245647175265076 0
 100C:\Users\kravchenko\Desktop\js-constr\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\module.h133245647179902228 0
 55C:\Users\kravchenko\Desktop\js-constr\package-lock.json133245666009274071 0
@@ -41,14 +41,14 @@
 72C:\Users\kravchenko\Desktop\js-constr\node_modules\domutils\package.json133245647155637133 0
 57C:\Users\kravchenko\Desktop\js-constr\node_modules\dotenv133245647150510283 1
 85C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\graph\src\AdjacencyList.js133245647159354844 0
-48C:\Users\kravchenko\Desktop\js-constr\src\app.js133251752436159171 0
+48C:\Users\kravchenko\Desktop\js-constr\src\app.js133253332245357768 0
 80C:\Users\kravchenko\Desktop\js-constr\node_modules\@mischnic\json-sourcemap\dist133245647157975695 1
 85C:\Users\kravchenko\Desktop\js-constr\node_modules\css-tree\lib\common\SyntaxError.js133245647180421915 0
 80C:\Users\kravchenko\Desktop\js-constr\node_modules\cosmiconfig\dist\index.js.map133245647160724002 0
 48C:\Users\kravchenko\Desktop\js-constr\src\images133245649041040067 1
 73C:\Users\kravchenko\Desktop\js-constr\node_modules\nth-check\package.json133245647154417880 0
 85C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\core\test\fixtures\context133245647188611954 1
-52C:\Users\kravchenko\Desktop\js-constr\src\index.html133247604551016737 0
+52C:\Users\kravchenko\Desktop\js-constr\src\index.html133252822593559874 0
 60C:\Users\kravchenko\Desktop\js-constr\node_modules\commander133245647154407894 1
 94C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\ambient-light.js133245647162153141 0
 57C:\Users\kravchenko\Desktop\js-constr\node_modules\braces133245647147542105 1
@@ -65,7 +65,7 @@
 71C:\Users\kravchenko\Desktop\js-constr\node_modules\picocolors\README.md133245647146272887 0
 81C:\Users\kravchenko\Desktop\js-constr\node_modules\type-fest\ts41\kebab-case.d.ts133245647159714624 0
 87C:\Users\kravchenko\Desktop\js-constr\node_modules\cosmiconfig\dist\ExplorerSync.js.map133245647159484766 0
-48C:\Users\kravchenko\Desktop\js-constr\src\styles133245907631559520 1
+48C:\Users\kravchenko\Desktop\js-constr\src\styles133253331914188974 1
 85C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\graph\src\shared-buffer.js133245647163372379 0
 76C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\core\src\requests133245647188442053 1
 67C:\Users\kravchenko\Desktop\js-constr\node_modules\terser\README.md133245647172166973 0
@@ -88,11 +88,11 @@
 94C:\Users\kravchenko\Desktop\js-constr\node_modules\@babel\highlight\node_modules\color-convert133245647149001212 1
 68C:\Users\kravchenko\Desktop\js-constr\node_modules\commander\esm.mjs133245647151439726 0
 70C:\Users\kravchenko\Desktop\js-constr\node_modules\acorn\dist\acorn.js133245647148171728 0
-53C:\Users\kravchenko\Desktop\js-constr\dist\index.html133251971330878273 0
-51C:\Users\kravchenko\Desktop\js-constr\src\utilus.js133248512914957422 0
+53C:\Users\kravchenko\Desktop\js-constr\dist\index.html133253412639115211 0
+51C:\Users\kravchenko\Desktop\js-constr\src\utilus.js133253371647731827 0
 65C:\Users\kravchenko\Desktop\js-constr\node_modules\source-map\lib133245647157885748 1
 67C:\Users\kravchenko\Desktop\js-constr\node_modules\terser\lib\utils133245647165970781 1
-56C:\Users\kravchenko\Desktop\js-constr\src\styles\app.css133247603503395119 0
+56C:\Users\kravchenko\Desktop\js-constr\src\styles\app.css133253329460164922 0
 93C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\console-time.js133245647179702351 0
 93C:\Users\kravchenko\Desktop\js-constr\node_modules\utility-types\dist\functional-helpers.d.ts133245647159154968 0
 80C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\transformer-image\src133245647160923901 1
@@ -109,7 +109,7 @@
 78C:\Users\kravchenko\Desktop\js-constr\node_modules\to-regex-range\package.json133245647141685701 0
 57C:\Users\kravchenko\Desktop\js-constr\src\images\blue.jpg133144514194864538 0
 79C:\Users\kravchenko\Desktop\js-constr\node_modules\@lezer\common\dist\index.cjs133245647156276739 0
-60C:\Users\kravchenko\Desktop\js-constr\src\classes\sidebar.js133251976540545695 0
+60C:\Users\kravchenko\Desktop\js-constr\src\classes\sidebar.js133253415748715637 0
 108C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\css-container-queries-style.js133245647182805511 0
 82C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\regions\NG.js133245647197586446 0
 101C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\high-resolution-time.js133245647191999863 0
@@ -122,7 +122,7 @@
 60C:\Users\kravchenko\Desktop\js-constr\node_modules\@mischnic133245647135319611 1
 57C:\Users\kravchenko\Desktop\js-constr\node_modules\@babel133245647135359587 1
 92C:\Users\kravchenko\Desktop\js-constr\node_modules\lmdb\node_modules\node-addon-api\index.js133245647172616693 0
-57C:\Users\kravchenko\Desktop\js-constr\src\classes\site.js133251710063961999 0
+57C:\Users\kravchenko\Desktop\js-constr\src\classes\site.js133253372729210231 0
 96C:\Users\kravchenko\Desktop\js-constr\node_modules\posthtml\node_modules\posthtml-parser\license133245647169328716 0
 67C:\Users\kravchenko\Desktop\js-constr\node_modules\srcset\readme.md133245647146073010 0
 77C:\Users\kravchenko\Desktop\js-constr\node_modules\@parcel\graph\lib\Graph.js133245647160684032 0
@@ -2386,6 +2386,7 @@
 97C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\domcontentloaded.js133245647189331506 0
 68C:\Users\kravchenko\Desktop\js-constr\node_modules\csso\CHANGELOG.md133245647168549197 0
 67C:\Users\kravchenko\Desktop\js-constr\node_modules\css-what\LICENSE133245647141645725 0
+61C:\Users\kravchenko\Desktop\js-constr\dist\index.3b8f328d.css133253329761399519 0
 63C:\Users\kravchenko\Desktop\js-constr\node_modules\csso\LICENSE133245647141645725 0
 96C:\Users\kravchenko\Desktop\js-constr\node_modules\caniuse-lite\data\features\input-selection.js133245647193518927 0
 72C:\Users\kravchenko\Desktop\js-constr\node_modules\css-what\package.json133245647156306727 0
@@ -4272,10 +4273,11 @@
 60C:\Users\kravchenko\Desktop\js-constr\node_modules\.bin\svgo133245647213816452 0
 64C:\Users\kravchenko\Desktop\js-constr\node_modules\.bin\svgo.ps1133245647213816452 0
 66C:\Users\kravchenko\Desktop\js-constr\node_modules\.bin\terser.cmd133245647213816452 0
-60C:\Users\kravchenko\Desktop\js-constr\dist\blue.39bb43ef.jpg133251971330728364 0
-60C:\Users\kravchenko\Desktop\js-constr\dist\index.0641b553.js133251976343060769 0
-64C:\Users\kravchenko\Desktop\js-constr\dist\index.0641b553.js.map133251976343090742 0
+60C:\Users\kravchenko\Desktop\js-constr\dist\blue.39bb43ef.jpg133253412638875359 0
+60C:\Users\kravchenko\Desktop\js-constr\dist\index.0641b553.js133253415749155349 0
+64C:\Users\kravchenko\Desktop\js-constr\dist\index.0641b553.js.map133253415749185339 0
 61C:\Users\kravchenko\Desktop\js-constr\dist\index.06f32ead.css133246705366862906 0
+65C:\Users\kravchenko\Desktop\js-constr\dist\index.3b8f328d.css.map133253329761459494 0
 60C:\Users\kravchenko\Desktop\js-constr\dist\index.67ee97ca.js133246705357438747 0
-61C:\Users\kravchenko\Desktop\js-constr\dist\index.c2b3c8ae.css133251755004437020 0
-65C:\Users\kravchenko\Desktop\js-constr\dist\index.c2b3c8ae.css.map133251755004496945 0
+61C:\Users\kravchenko\Desktop\js-constr\dist\index.c2b3c8ae.css133253412637206409 0
+65C:\Users\kravchenko\Desktop\js-constr\dist\index.c2b3c8ae.css.map133253412637276377 0

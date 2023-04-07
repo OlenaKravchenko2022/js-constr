@@ -564,8 +564,7 @@ var _sidebar = require("./classes/sidebar");
 var _appCss = require("./styles/app.css");
 const site = new (0, _site.Site)("#site");
 site.render((0, _modelJs.model));
-const sidebar = new (0, _sidebar.Sidebar)("#panel");
-sidebar.render((0, _sidebar.Sidebar)); //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
+const sidebar = new (0, _sidebar.Sidebar)("#panel"); //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
  // console.log(templates["title"]);
  // model.forEach((block) => {
  // создаём html пустой блок, куда будем всё вкладывать
@@ -738,6 +737,7 @@ parcelHelpers.export(exports, "col", ()=>col);
 //функція css,яка буде приймати обєкти стилів і по замовчуванню буде рівнятись пустому обєкту
 //один з методів це скористатися загальною функцвєю object в яку ми передаємо сам обєктб а на виході отримуємо масив keys
 parcelHelpers.export(exports, "css", ()=>css);
+parcelHelpers.export(exports, "block", ()=>block);
 function row(content, styles = ``) {
     return `<div class="row" style="${styles}">${content}</div>`;
 }
@@ -758,6 +758,29 @@ function css(styles = {}) {
     //зробимо окрему функцію яка приводить в строку
     const toString = (key)=>`${key}:${styles[key]}`;
     return Object.keys(styles).map(toString).join(";");
+}
+function block(type) {
+    return `
+  <form name="${type}">
+      <h5>${type}</h5>
+      <div class="form-group">
+        <input
+          class="form-control form-control-sm"
+          name="value"
+          placeholder="value"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control form-control-sm"
+          name="styles"
+          placeholder="styles"
+        />
+      </div>
+      <button type="submit" class="form-control form-control-sm">enter</button>
+    </form>
+    <hr />
+  `;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -796,11 +819,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Site", ()=>Site);
 class Site {
     constructor(selector){
-        this.el = document.querySelector(selector);
+        this.$el = document.querySelector(selector);
     }
     render(model) {
         model.forEach((block)=>{
-            this.el.insertAdjacentHTML("beforeend", block.toHTML());
+            this.$el.insertAdjacentHTML("beforeend", block.toHTML());
         });
     }
 }
@@ -809,13 +832,34 @@ class Site {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Sidebar", ()=>Sidebar);
+var _utilus = require("../utilus");
 class Sidebar {
     constructor(selector){
-        this.el = document.querySelector(selector);
-        this.el.insertAdjacentHTML("afterbegin", "<h2>test</h2>");
+        this.$el = document.querySelector(selector);
+        this.init();
+    }
+    //створюємо геттор в классі, він не мусить мати якісь параметри
+    //отримуємо темплейт як змінну
+    //створюємо споможний метод инит
+    init() {
+        this.$el.insertAdjacentHTML("afterbegin", this.template);
+        this.$el.addEventListener("submit", this.add);
+    }
+    get template() {
+        return [
+            (0, _utilus.block)("text"),
+            (0, _utilus.block)("title")
+        ].join("");
+    }
+    add(event) {
+        event.preventDefault();
+        const type = event.target.name;
+        const value = event.target.value.value;
+        const style = event.target.value.style;
+        debugger;
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gvqqn":[function() {},{}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../utilus":"5cIFG"}],"gvqqn":[function() {},{}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
 
 //# sourceMappingURL=index.0641b553.js.map

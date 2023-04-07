@@ -8,7 +8,6 @@ const site = new Site("#site");
 
 site.render(model);
 const sidebar = new Sidebar("#panel");
-sidebar.render(Sidebar);
 
 //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
 // console.log(templates["title"]);
