@@ -683,8 +683,7 @@ parcelHelpers.export(exports, "ColumnsBlock", ()=>ColumnsBlock);
 parcelHelpers.export(exports, "ImageBlock", ()=>ImageBlock);
 var _utilus = require("../utilus");
 class Block {
-    constructor(type, value, options){
-        this.type = type;
+    constructor(value, options){
         this.value = value;
         this.options = options;
     }
@@ -694,7 +693,7 @@ class Block {
 }
 class TitleBlock extends Block {
     constructor(value, options){
-        super("title", value, options);
+        super(value, options);
     }
     toHTML() {
         const { tag ="h1" , styles  } = this.options; //змінюємо Block на this
@@ -703,7 +702,7 @@ class TitleBlock extends Block {
 }
 class TextBlock extends Block {
     constructor(value, options){
-        super("text", value, options);
+        super(value, options);
     }
     toHTML() {
         return (0, _utilus.row)((0, _utilus.col)(`<p>${this.value}</p>`), (0, _utilus.css)(this.options.styles));
@@ -711,7 +710,7 @@ class TextBlock extends Block {
 }
 class ColumnsBlock extends Block {
     constructor(value, options){
-        super("columns", value, options);
+        super(value, options);
     }
     toHTML() {
         const html = this.value.map((0, _utilus.col)).join("");
@@ -720,7 +719,7 @@ class ColumnsBlock extends Block {
 }
 class ImageBlock extends Block {
     constructor(value, options){
-        super("image", value, options);
+        super(value, options);
     }
     toHTML() {
         const { imageStyle , alt , styles  } = this.options;
@@ -856,7 +855,6 @@ class Sidebar {
         const type = event.target.name;
         const value = event.target.value.value;
         const style = event.target.value.style;
-        debugger;
     }
 }
 

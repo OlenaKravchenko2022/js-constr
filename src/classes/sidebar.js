@@ -23,7 +23,5 @@ export class Sidebar {
     const type = event.target.name;
     const value = event.target.value.value;
     const style = event.target.value.style;
-
-    debugger;
   }
 }
