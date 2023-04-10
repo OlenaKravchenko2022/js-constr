@@ -1,13 +1,12 @@
-import { model } from "./model.js";
+import { model } from "./model.js"; //цю страку можна буде витерти, бо будемо використовувати зис модел
 // import { templates } from "./templates.js";
-import { Site } from "./classes/site";
-import { Sidebar } from "./classes/sidebar";
+
+import { Frame } from "./classes/frame";
 import "./styles/app.css";
 
-const site = new Site("#site");
+new Frame(model).init();
 
-site.render(model);
-const sidebar = new Sidebar("#panel");
+//передаємо колбек, який показує, що треба змінити модель якщо зміниться умова ()=>{}
 
 //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
 // console.log(templates["title"]);

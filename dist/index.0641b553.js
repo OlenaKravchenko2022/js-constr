@@ -557,14 +557,12 @@ function hmrAccept(bundle, id) {
 }
 
 },{}],"bNKaB":[function(require,module,exports) {
-var _modelJs = require("./model.js");
+var _modelJs = require("./model.js"); //цю страку можна буде витерти, бо будемо використовувати зис модел
 // import { templates } from "./templates.js";
-var _site = require("./classes/site");
-var _sidebar = require("./classes/sidebar");
+var _frame = require("./classes/frame");
 var _appCss = require("./styles/app.css");
-const site = new (0, _site.Site)("#site");
-site.render((0, _modelJs.model));
-const sidebar = new (0, _sidebar.Sidebar)("#panel"); //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
+new (0, _frame.Frame)((0, _modelJs.model)).init(); //передаємо колбек, який показує, що треба змінити модель якщо зміниться умова ()=>{}
+ //змінюємо задокументований код на простіший так як templates це обєкт, тому мі можемо звернутись до нього як до обєкту
  // console.log(templates["title"]);
  // model.forEach((block) => {
  // создаём html пустой блок, куда будем всё вкладывать
@@ -584,7 +582,7 @@ const sidebar = new (0, _sidebar.Sidebar)("#panel"); //змінюємо задо
  // }
  // });
 
-},{"./model.js":"dEDha","./classes/site":"24VTm","./classes/sidebar":"5YCBk","./styles/app.css":"gvqqn"}],"dEDha":[function(require,module,exports) {
+},{"./model.js":"dEDha","./styles/app.css":"gvqqn","./classes/frame":"6EPZC"}],"dEDha":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "model", ()=>model);
@@ -736,7 +734,18 @@ parcelHelpers.export(exports, "col", ()=>col);
 //функція css,яка буде приймати обєкти стилів і по замовчуванню буде рівнятись пустому обєкту
 //один з методів це скористатися загальною функцвєю object в яку ми передаємо сам обєктб а на виході отримуємо масив keys
 parcelHelpers.export(exports, "css", ()=>css);
-parcelHelpers.export(exports, "block", ()=>block);
+parcelHelpers.export(exports, "block", ()=>block) // const keys = Object.keys(styles);
+ // console.log(keys);
+ //пробіжемося по масиву за допомогою мепа, де на кожній літерації отримуємо певний key і необхідно повернути нову строчку із обєкта вже в стілі. Потім потрібно вказати значення, яке беремо з обєкту стайл за допомогою ключа key
+ //потім отримуємо array цих стилів і повертати будем array,які зєднаємо чере точку с комою
+ //  але даний нижче код можно зробити кращим
+ //   const array = keys.map((key) => {
+ //     return `${key}:${styles[key]}`;
+ //   });
+ //   return array.join(";");
+ // ми можемо зразу пробігтися по масиву через функцію меп, який буде преобразовувати всю цю структуру+зразу можемо застосувати метод джойн
+ //зробимо окрему функцію яка приводить в строку
+;
 function row(content, styles = ``) {
     return `<div class="row" style="${styles}">${content}</div>`;
 }
@@ -744,17 +753,6 @@ function col(content) {
     return `<div class="col-sm">${content}</div>`;
 }
 function css(styles = {}) {
-    // const keys = Object.keys(styles);
-    // console.log(keys);
-    //пробіжемося по масиву за допомогою мепа, де на кожній літерації отримуємо певний key і необхідно повернути нову строчку із обєкта вже в стілі. Потім потрібно вказати значення, яке беремо з обєкту стайл за допомогою ключа key
-    //потім отримуємо array цих стилів і повертати будем array,які зєднаємо чере точку с комою
-    //  але даний нижче код можно зробити кращим
-    //   const array = keys.map((key) => {
-    //     return `${key}:${styles[key]}`;
-    //   });
-    //   return array.join(";");
-    // ми можемо зразу пробігтися по масиву через функцію меп, який буде преобразовувати всю цю структуру+зразу можемо застосувати метод джойн
-    //зробимо окрему функцію яка приводить в строку
     const toString = (key)=>`${key}:${styles[key]}`;
     return Object.keys(styles).map(toString).join(";");
 }
@@ -774,9 +772,9 @@ function block(type) {
           class="form-control form-control-sm"
           name="styles"
           placeholder="styles"
-        />
+        >
       </div>
-      <button type="submit" class="form-control form-control-sm">enter</button>
+      <button type="submit" class="btn btn-primary btn-sm">enter</button>
     </form>
     <hr />
   `;
@@ -812,29 +810,38 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"24VTm":[function(require,module,exports) {
+},{}],"gvqqn":[function() {},{}],"6EPZC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Site", ()=>Site);
-class Site {
-    constructor(selector){
-        this.$el = document.querySelector(selector);
+parcelHelpers.export(exports, "Frame", ()=>Frame);
+var _site = require("./site");
+var _sidebar = require("./sidebar");
+class Frame {
+    constructor(model){
+        this.model = model;
     }
-    render(model) {
-        model.forEach((block)=>{
-            this.$el.insertAdjacentHTML("beforeend", block.toHTML());
-        });
+    init() {
+        const site = new (0, _site.Site)("#site");
+        site.render(this.model);
+        //передаємо колбек, який показує, що треба змінити модель якщо зміниться умова ()=>{}
+        const updateCallback = (newBlock)=>{
+            this.model.push(newBlock);
+            site.render(this.model);
+        };
+        new (0, _sidebar.Sidebar)("#panel", updateCallback);
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5YCBk":[function(require,module,exports) {
+},{"./sidebar":"5YCBk","./site":"24VTm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5YCBk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Sidebar", ()=>Sidebar);
 var _utilus = require("../utilus");
+var _block = require("./block");
 class Sidebar {
-    constructor(selector){
+    constructor(selector, updateCallback){
         this.$el = document.querySelector(selector);
+        this.update = updateCallback;
         this.init();
     }
     //створюємо геттор в классі, він не мусить мати якісь параметри
@@ -842,7 +849,7 @@ class Sidebar {
     //створюємо споможний метод инит
     init() {
         this.$el.insertAdjacentHTML("afterbegin", this.template);
-        this.$el.addEventListener("submit", this.add);
+        this.$el.addEventListener("submit", this.add.bind(this));
     }
     get template() {
         return [
@@ -854,10 +861,41 @@ class Sidebar {
         event.preventDefault();
         const type = event.target.name;
         const value = event.target.value.value;
-        const style = event.target.value.style;
+        const styles = event.target.styles.value;
+        const newBlock = type === "text" ? new (0, _block.TextBlock)(value, {
+            styles
+        }) : new (0, _block.TitleBlock)(value, {
+            styles
+        });
+        //зробимо таке значенння коротшим, тобто зробимо це тернарним виразом: спочатку прописуємо умову а потім через знак питання пишимо, що умови які поадають після знака питання, якщо ні, то :
+        // if (type === "text") {
+        //   newBlock = new TextBlock(value, { styles });
+        // } else {
+        //   newBlock = new TitleBlock(value, { styles });
+        // }
+        this.update(newBlock);
+        event.target.value.value = "";
+        event.target.styles.value = "";
+    //щоб сайт не дублювався постійно робимо контроль
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../utilus":"5cIFG"}],"gvqqn":[function() {},{}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
+},{"../utilus":"5cIFG","./block":"3AZe8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"24VTm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Site", ()=>Site);
+class Site {
+    constructor(selector){
+        this.$el = document.querySelector(selector);
+    }
+    render(model) {
+        this.$el.innerHTML = "";
+        model.forEach((block)=>{
+            this.$el.insertAdjacentHTML("beforeend", block.toHTML());
+        });
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["lKzq4","bNKaB"], "bNKaB", "parcelRequire7785")
 
 //# sourceMappingURL=index.0641b553.js.map

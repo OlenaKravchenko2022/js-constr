@@ -1,8 +1,10 @@
 import { block } from "../utilus";
+import { TextBlock, TitleBlock } from "./block";
 
 export class Sidebar {
-  constructor(selector) {
+  constructor(selector, updateCallback) {
     this.$el = document.querySelector(selector);
+    this.update = updateCallback;
     this.init();
   }
   //створюємо геттор в классі, він не мусить мати якісь параметри
@@ -11,7 +13,7 @@ export class Sidebar {
 
   init() {
     this.$el.insertAdjacentHTML("afterbegin", this.template);
-    this.$el.addEventListener("submit", this.add);
+    this.$el.addEventListener("submit", this.add.bind(this));
   }
 
   get template() {
@@ -22,6 +24,22 @@ export class Sidebar {
 
     const type = event.target.name;
     const value = event.target.value.value;
-    const style = event.target.value.style;
+    const styles = event.target.styles.value;
+
+    const newBlock =
+      type === "text"
+        ? new TextBlock(value, { styles })
+        : new TitleBlock(value, { styles });
+    //зробимо таке значенння коротшим, тобто зробимо це тернарним виразом: спочатку прописуємо умову а потім через знак питання пишимо, що умови які поадають після знака питання, якщо ні, то :
+    // if (type === "text") {
+    //   newBlock = new TextBlock(value, { styles });
+    // } else {
+    //   newBlock = new TitleBlock(value, { styles });
+    // }
+
+    this.update(newBlock);
+    event.target.value.value = "";
+    event.target.styles.value = "";
+    //щоб сайт не дублювався постійно робимо контроль
   }
 }
