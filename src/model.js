@@ -1,4 +1,5 @@
-import image from "./images/blue.jpg";
+import image from "./images/ring.jpg";
+
 import {
   TitleBlock,
   TextBlock,
@@ -10,7 +11,7 @@ import {
 // styles:
 //   "background:linear-gradient(to right, #ff0099,#493240); color: #fff; text-align: center; padding: 2rem",
 export const model = [
-  new TitleBlock("My personal site for my need", {
+  new TitleBlock("What do you want to know about hollidays", {
     tag: "h2",
     styles: {
       background: "linear-gradient(to right, #ff0099,#493240)",
@@ -19,9 +20,9 @@ export const model = [
       padding: "2rem",
     },
   }),
-  new TextBlock("I will wrtie somethhing here later", {
+  new TextBlock("be patient to other people", {
     styles: {
-      background: "linear-gradient(to right, #ff0099,#493240)",
+      background: "linear-gradient(to right, #ff0099,#493247)",
       color: "#fff",
       "text-align": "center", //в кавичках, так як він через дефіс пішеться
       padding: "2rem",
@@ -29,11 +30,11 @@ export const model = [
   }),
   new ColumnsBlock(
     [
-      "111111111111111",
-      "2222222222222222",
-      "33333333333",
-      "444444444444",
-      "555555555",
+      "Better to make something usefull",
+      "you have to make new world for yourself",
+      "to read a book",
+      "go play tennis",
+      "to prepare big cacke for friends",
     ],
     {
       styles: {
@@ -52,7 +53,7 @@ export const model = [
       padding: "2rem",
     },
     imageStyle: {
-      width: "500px",
+      width: "400px",
       height: "auto",
     },
     alt: "it's a picture",
