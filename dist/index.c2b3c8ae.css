@@ -1,15 +1,15 @@
-#site {
+#app {
   position: relative;
 }
 
 .content {
   position: absolute;
   top: 0;
-  left: 280px;
+  left: 400px;
   right: 0;
 }
 
-.sidebar {
+sidebar {
   width: 200px;
   z-index: 100;
   padding: 10px;

@@ -8,6 +8,7 @@ export function col(content) {
 //функція css,яка буде приймати обєкти стилів і по замовчуванню буде рівнятись пустому обєкту
 //один з методів це скористатися загальною функцвєю object в яку ми передаємо сам обєктб а на виході отримуємо масив keys
 export function css(styles = {}) {
+  if (typeof styles === "string") return styles;
   const toString = (key) => `${key}:${styles[key]}`;
   return Object.keys(styles).map(toString).join(";");
 }

@@ -1,4 +1,4 @@
-#site {
+#app {
   position: relative;
 }
 
@@ -6,9 +6,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  left: 280px;
+  left: 400px;
 }
-.sidebar {
+sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
